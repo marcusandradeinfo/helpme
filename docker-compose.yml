@@ -1,0 +1,10 @@
+services:
+  helpme:
+    build: .
+    container_name: helpme
+    ports:
+      - "8003:8000"
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3
+      - ./app/static:/app/app/static
+    restart: always
