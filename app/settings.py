@@ -18,7 +18,7 @@ SECRET_KEY = 'django-insecure-x=zeh^411(8_#2qit_blzpv2_=ao$x)een+ts=@o2!p)0yy50r
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "https://www.marcusandradeinfo.com.br",
+    "www.marcusandradeinfo.com.br",
     "localhost",
     "127.0.0.1"
 
