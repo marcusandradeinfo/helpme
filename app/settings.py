@@ -7,7 +7,6 @@ from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-FORCE_SCRIPT_NAME = '/helpme'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -20,7 +19,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "www.marcusandradeinfo.com.br",
-    "www.marcusandradeinfo.com.br",
+    "marcusandradeinfo.com.br",
     "localhost",
     "127.0.0.1"
 
@@ -126,13 +125,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'helpme/static/'
+if os.getenv('DJANGO_ENV') == 'production':
+    FORCE_SCRIPT_NAME = '/helpme'
+    STATIC_URL = '/helpme/static/'
+    MEDIA_URL = '/helpme/media/'
+else:
+    FORCE_SCRIPT_NAME = None
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'app/static'),
 ]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

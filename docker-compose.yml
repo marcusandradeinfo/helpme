@@ -1,6 +1,8 @@
 services:
   helpme:
     build: .
+    environment:
+      - DJANGO_ENV=production
     container_name: helpme
     ports:
       - "8003:8000"
