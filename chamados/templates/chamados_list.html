@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h3>Chamados</h3>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <form method="get" action="{% url 'chamados_list' %}">
+        <div class="input-group">
+          <input type="text" class="form-control" name="nome" placeholder="Numero do Chamado" value="{{ request.GET.numero_chamado }}">
+          <button type="submit" class="btn btn-success">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  <div class="col-md-6">
+    <a href="{% url 'chamados_create' %}" class="btn btn-success">
+      <i class="bi bi-plus"></i> Abrir Chamado
+    </a>
+  </div>
+  </div>
+    <div>
+    <table class="table table-striped table-bordered">
+      <thead class="thread-dark">
+        <tr>
+          <th scope="col">Numero</th>
+          <th scope="col">Cliente</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Cidade</th>
+          <th scope="col">Bairro</th>
+          <th scope="col">Endereço</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Data Abertura</th>
+          <th scope="col">Data de Atendimento</th>
+          <th scope="col">Horário</th>
+          <th scope="col">Técnico</th>
+          <th scope="col">Status</th>
+          <th scope="col">Nivel</th>
+          <th scope="col">Motivo</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for chamado in chamados  %}
+        <tr>
+          <td>{{ chamado.numero_chamado }}</td>
+          <td>{{ chamado.cliente }}</td>
+          <td>{{ chamado.estado }}</td>
+          <td>{{ chamado.cidade }}</td>
+          <td>{{ chamado.bairro }}</td>
+          <td>{{ chamado.endereco }}</td>
+          <td>{{ chamado.telefone }}</td>
+          <td>{{ chamado.data_abertura }}</td>
+          <td>{{ chamado.data_atendimento }}</td>
+          <td>{{ chamado.horario_atendimento }}</td>   
+          <td>{{ chamado.tecnicos }}</td>       
+          <td>{{ chamado.status }}</td>
+          <td>{{ chamado.nivel }}</td>
+          <td>{{ chamado.motivo }}</td>
+          <td>
+            <a href="{% url 'chamados_detail' chamado.numero_chamado %}" class="btn btn-primary">
+              <i class="bi bi-eye"></i>
+            </a>
+            <a href="{% url 'chamados_update' chamado.numero_chamado %}" class="btn btn-success">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+            <a href="{% url 'chamados_delete' chamado.numero_chamado %}" class="btn btn-danger">
+              <i class="bi bi-trash-fill"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+
+{% include 'components/pagination.html' %}
+
+{% endblock %}

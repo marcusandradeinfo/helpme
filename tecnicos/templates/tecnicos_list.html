@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h3>Tecnicos</h3>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <form method="get" action="{% url 'tecnicos_list' %}">
+        <div class="input-group">
+          <input type="text" class="form-control" name="nome" placeholder="Nome do Técnicos" value="{{ request.GET.nome }}">
+          <button type="submit" class="btn btn-success">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  <div class="col-md-6">
+    <a href="{% url 'tecnicos_create' %}" class="btn btn-success">
+      <i class="bi bi-plus"></i> Cadastrar Técnico
+    </a>
+  </div>
+  </div>
+    <div>
+    <table class="table table-striped table-bordered">
+      <thead class="thread-dark">
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Data de Nascimento</th>
+          <th scope="col">UF</th>
+          <th scope="col">Cidade</th>
+          <th scope="col">Bairro</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Status</th>
+          <th scope="col">Nível</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tecnico in tecnicos  %}
+        <tr>
+          <td>{{ tecnico.nome }}</td>
+          <td>{{ tecnico.cpf }}</td>
+          <td>{{ tecnico.data_nascimento }}</td>
+          <td>{{ tecnico.estado }}</td>
+          <td>{{ tecnico.cidade }}</td>
+          <td>{{ tecnico.bairro }}</td>
+          <td>{{ tecnico.telefone }}</td>
+          <td>{{ tecnico.status }}</td>
+          <td>{{ tecnico.nivel }}</td>   
+          <td>
+            <a href="{% url 'tecnicos_detail' tecnico.id %}" class="btn btn-primary">
+              <i class="bi bi-eye"></i>
+            </a>
+            <a href="{% url 'tecnicos_update' tecnico.id %}" class="btn btn-success">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+            <a href="{% url 'tecnicos_delete' tecnico.id %}" class="btn btn-danger">
+              <i class="bi bi-trash-fill"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+
+{% include 'components/pagination.html' %}
+
+{% endblock %}

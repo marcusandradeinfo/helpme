@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container p-5 bg-light rounded">
+  
+  <h3 class="text-dark">Controle de Chamados</h3>
+  <hr class="text-dark">
+  <div class="row mb-12">
+    <div class="col-md-4">
+      <div class="card bg-success">
+        <div class="card-body">
+            <h3 class='card-title'>Chamados Atendidos</h3>
+            <p class='card-text text-white font-weight-bold display-6'>{{ valores_chamados.chamados_atendidos }}</p>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-danger">
+        <div class="card-body">
+          <h3 class='card-title'>Chamados Abertos</h3>
+          <p class='card-text text-white font-weight-bold display-6'>{{ valores_chamados.chamados_abertos }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-secondary">
+        <div class="card-body">
+          <h3 class='card-title'>Técnicos Disponíveis</h3>
+          <p class='card-text text-white font-weight-bold display-6'>{{ valores_chamados.tecnicos_disponiveis }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+  <h3 class='card-title text-dark'>Próximos Chamados</h3>
+  <hr class="text-dark">
+  <br>
+
+
+<div class="container">
+  {% for d_chamado in dados_chamados %}
+    {% if forloop.counter0|divisibleby:3 %}
+      <div class="row mb-4">
+    {% endif %}
+
+        <div class="col-md-4">
+          <div class="card bg-light">
+            <div class="card-body bg-primary rounded">
+              <h3 class='card-title rounded text-white'>Número: {{d_chamado.NumeroChamado }}</h3>
+              <hr>
+              <p class='card-text text-white font-weight-bold display-10'>Cliente: {{ d_chamado.Cliente }}</p>
+              <p class='card-text text-white font-weight-bold display-10'>Técnico: {{ d_chamado.Tecnicos }}</p>
+              <p class='card-text text-white font-weight-bold display-10'>Data: {{ d_chamado.DataAtendimento }}</p>
+              <p class='card-text text-white font-weight-bold display-10'>Horário: {{ d_chamado.HorarioAtendimento }}</p>
+            </div>
+          </div>
+        </div>
+
+    {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+</div>
+    <br>
+    <br>
+    
+{% endblock %}

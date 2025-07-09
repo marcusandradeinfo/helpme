@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="w-100" style="max-width: 600px;">
+  <h3>Exclusão de Clientes</h3>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Tem certeza que deseja excluir o Cliente <strong>{{ object.nome }}</strong>?</p>
+          <form method="POST" class="form-control" action="">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Deletar</button>
+              <a href="{% url 'clientes_list' %}" class="btn btn-primary">Cancelar</a>
+          </form>
+        </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
