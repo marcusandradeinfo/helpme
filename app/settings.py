@@ -49,9 +49,6 @@ INSTALLED_APPS = [
     'authentication',
 ]
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/login/'
 
 
 
@@ -135,10 +132,17 @@ if os.getenv('DJANGO_ENV') == 'production':
     FORCE_SCRIPT_NAME = '/helpme'
     STATIC_URL = '/helpme/static/'
     MEDIA_URL = '/helpme/media/'
+    LOGIN_URL = '/helpme/login/'
+    LOGOUT_REDIRECT_URL = '/helpme/login/'
+
 else:
     FORCE_SCRIPT_NAME = None
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
+    LOGIN_URL = 'login'
+    LOGOUT_REDIRECT_URL = '/login/'
+    #LOGOUT_REDIRECT_URL = '/'
+
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
