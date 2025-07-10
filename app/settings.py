@@ -51,10 +51,7 @@ INSTALLED_APPS = [
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
-if os.getenv('DJANGO_ENV') == 'production':
-    LOGOUT_REDIRECT_URL = 'helpme/login/'
-else:
-    LOGOUT_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/login/'
 
 
 
