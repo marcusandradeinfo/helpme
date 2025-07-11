@@ -134,7 +134,7 @@ if os.getenv('DJANGO_ENV') == 'production':
     MEDIA_URL = '/helpme/media/'
     LOGIN_URL = '/helpme/login/'
     LOGOUT_REDIRECT_URL = '/helpme/login/'
-    LOGIN_REDIRECT_URL = '/'
+    LOGIN_REDIRECT_URL = '/helpme/'
 
 else:
     FORCE_SCRIPT_NAME = None
