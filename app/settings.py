@@ -134,6 +134,7 @@ if os.getenv('DJANGO_ENV') == 'production':
     MEDIA_URL = '/helpme/media/'
     LOGIN_URL = '/helpme/login/'
     LOGOUT_REDIRECT_URL = '/helpme/login/'
+    LOGIN_REDIRECT_URL = '/'
 
 else:
     FORCE_SCRIPT_NAME = None
@@ -141,7 +142,7 @@ else:
     MEDIA_URL = '/media/'
     LOGIN_URL = 'login'
     LOGOUT_REDIRECT_URL = '/login/'
-    #LOGOUT_REDIRECT_URL = '/'
+    LOGIN_REDIRECT_URL = '/'
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
