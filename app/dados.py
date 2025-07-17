@@ -1,5 +1,7 @@
 from chamados.models import Chamados
 from tecnicos.models import Tecnicos
+
+
 def DadosChamados():
     chamados_atendidos = Chamados.objects.filter(status__status__iexact='fechado').count()
     chamados_abertos = Chamados.objects.filter(status__status__iexact='aberto').count()
